@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Container, Paper, AppBar, Toolbar, IconButton, Typography } from "@material-ui/core";
+import ToDoAdder from "./components/ToDoAdder";
+import ToDoContainer from "./components/ToDoContainer";
 
-function App() {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  appContainer: {
+    paddingLeft: "5vw",
+    paddingRight: "5vw",
+    marginTop: "5vh",
+  },
+  wrapper: {
+    textAlign: "center",
+    width: "100%",
+  },
+}));
+
+const App = () => {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <AssignmentIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            REDUX TODOS
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container className={classes.appContainer}>
+        <Paper className={classes.wrapper} elevation={0}>
+          {/** Todo Adder */}
+          <ToDoAdder />
+          {/** Todo List */}
+          <ToDoContainer />
+        </Paper>
+      </Container>
+    </Box>
   );
-}
-
+};
 export default App;
